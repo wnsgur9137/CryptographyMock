@@ -7,13 +7,7 @@
 
 import UIKit
 
-final class CryptoSwiftView: UIScrollView {
-    
-    private let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+final class CryptoSwiftView: UIView {
     
     private let passwordLabel: UILabel = {
         let label = UILabel()
@@ -192,10 +186,9 @@ extension CryptoSwiftView {
 // MARK: - Layout
 extension CryptoSwiftView {
     private func addSubviews() {
-        self.addSubview(contentView)
-        contentView.addSubview(passwordStackView)
-        contentView.addSubview(encryptStackView)
-        contentView.addSubview(decryptStackView)
+        self.addSubview(passwordStackView)
+        self.addSubview(encryptStackView)
+        self.addSubview(decryptStackView)
         
         passwordStackView.addArrangedSubview(passwordLabel)
         passwordStackView.addArrangedSubview(passwordTextField)
@@ -213,22 +206,14 @@ extension CryptoSwiftView {
     
     private func setLayoutConstraints() {
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: self.widthAnchor),
-        ])
-        
-        NSLayoutConstraint.activate([
             passwordLabel.widthAnchor.constraint(equalToConstant: 400.0),
             passwordLabel.heightAnchor.constraint(equalToConstant: 30.0),
             
             passwordTextField.widthAnchor.constraint(equalToConstant: 400.0),
             passwordTextField.heightAnchor.constraint(equalToConstant: 30.0),
             
-            passwordStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 50.0),
-            passwordStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            passwordStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 50.0),
+            passwordStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
         
         NSLayoutConstraint.activate([
@@ -239,9 +224,9 @@ extension CryptoSwiftView {
             encryptedTextField.heightAnchor.constraint(equalToConstant: 30.0),
             
             encryptStackView.topAnchor.constraint(equalTo: passwordStackView.bottomAnchor, constant: 80.0),
-            encryptStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            encryptStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            encryptStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            encryptStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            encryptStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            encryptStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
         
         NSLayoutConstraint.activate([
@@ -252,10 +237,9 @@ extension CryptoSwiftView {
             decryptedTextField.heightAnchor.constraint(equalToConstant: 30.0),
             
             decryptStackView.topAnchor.constraint(equalTo: encryptStackView.bottomAnchor, constant: 30.0),
-            decryptStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            decryptStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            decryptStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            decryptStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            decryptStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            decryptStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            decryptStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
     }
 }
