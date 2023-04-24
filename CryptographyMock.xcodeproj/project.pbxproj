@@ -25,19 +25,8 @@
 		A8D6BCF729F64AF600CDEAF0 /* CryptoFrameworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BCF629F64AF600CDEAF0 /* CryptoFrameworkViewController.swift */; };
 		A8D6BCF929F64B2900CDEAF0 /* CryptoFrameworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BCF829F64B2900CDEAF0 /* CryptoFrameworkViewModel.swift */; };
 		A8D6BCFB29F64B2E00CDEAF0 /* CryptoFrameworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BCFA29F64B2E00CDEAF0 /* CryptoFrameworkView.swift */; };
-		A8D6BD2529F6573E00CDEAF0 /* CryptoAES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6BD2329F6572100CDEAF0 /* CryptoAES.framework */; };
-		A8D6BD2629F6573E00CDEAF0 /* CryptoAES.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6BD2329F6572100CDEAF0 /* CryptoAES.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8D6BD2A29F65D7A00CDEAF0 /* CryptoAES256 in Frameworks */ = {isa = PBXBuildFile; productRef = A8D6BD2929F65D7A00CDEAF0 /* CryptoAES256 */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A8D6BD2229F6572100CDEAF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A8D6BD1D29F6572100CDEAF0 /* CryptoAES.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A8D6BD0A29F64D2000CDEAF0;
-			remoteInfo = CryptoAES;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A8D6BD2729F6573E00CDEAF0 /* Embed Frameworks */ = {
@@ -46,7 +35,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A8D6BD2629F6573E00CDEAF0 /* CryptoAES.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,7 +61,6 @@
 		A8D6BCF629F64AF600CDEAF0 /* CryptoFrameworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFrameworkViewController.swift; sourceTree = "<group>"; };
 		A8D6BCF829F64B2900CDEAF0 /* CryptoFrameworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFrameworkViewModel.swift; sourceTree = "<group>"; };
 		A8D6BCFA29F64B2E00CDEAF0 /* CryptoFrameworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFrameworkView.swift; sourceTree = "<group>"; };
-		A8D6BD1D29F6572100CDEAF0 /* CryptoAES.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoAES.xcodeproj; path = ../../CryptoAES/CryptoAES.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8D6BCF129F632A500CDEAF0 /* CryptoSwift in Frameworks */,
-				A8D6BD2529F6573E00CDEAF0 /* CryptoAES.framework in Frameworks */,
+				A8D6BD2A29F65D7A00CDEAF0 /* CryptoAES256 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +114,6 @@
 		A8CD472F29F272EF005E80ED = {
 			isa = PBXGroup;
 			children = (
-				A8D6BD1D29F6572100CDEAF0 /* CryptoAES.xcodeproj */,
 				A8CD473A29F272EF005E80ED /* CryptographyMock */,
 				A8CD473929F272EF005E80ED /* Products */,
 				A8D6BD2429F6573E00CDEAF0 /* Frameworks */,
@@ -268,14 +254,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A8D6BD1E29F6572100CDEAF0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A8D6BD2329F6572100CDEAF0 /* CryptoAES.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A8D6BD2429F6573E00CDEAF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +280,7 @@
 			name = CryptographyMock;
 			packageProductDependencies = (
 				A8D6BCF029F632A500CDEAF0 /* CryptoSwift */,
+				A8D6BD2929F65D7A00CDEAF0 /* CryptoAES256 */,
 			);
 			productName = CryptographyMock;
 			productReference = A8CD473829F272EF005E80ED /* CryptographyMock.app */;
@@ -333,31 +312,16 @@
 			mainGroup = A8CD472F29F272EF005E80ED;
 			packageReferences = (
 				A8D6BCEF29F632A500CDEAF0 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				A8D6BD2829F65D7A00CDEAF0 /* XCRemoteSwiftPackageReference "CryptoAES256" */,
 			);
 			productRefGroup = A8CD473929F272EF005E80ED /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = A8D6BD1E29F6572100CDEAF0 /* Products */;
-					ProjectRef = A8D6BD1D29F6572100CDEAF0 /* CryptoAES.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				A8CD473729F272EF005E80ED /* CryptographyMock */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		A8D6BD2329F6572100CDEAF0 /* CryptoAES.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CryptoAES.framework;
-			remoteRef = A8D6BD2229F6572100CDEAF0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A8CD473629F272EF005E80ED /* Resources */ = {
@@ -608,6 +572,14 @@
 				minimumVersion = 1.7.0;
 			};
 		};
+		A8D6BD2829F65D7A00CDEAF0 /* XCRemoteSwiftPackageReference "CryptoAES256" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wnsgur9137/CryptoAES256";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -615,6 +587,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A8D6BCEF29F632A500CDEAF0 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
+		};
+		A8D6BD2929F65D7A00CDEAF0 /* CryptoAES256 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8D6BD2829F65D7A00CDEAF0 /* XCRemoteSwiftPackageReference "CryptoAES256" */;
+			productName = CryptoAES256;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

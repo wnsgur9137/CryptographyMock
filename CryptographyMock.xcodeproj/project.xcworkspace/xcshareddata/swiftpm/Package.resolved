@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "cryptoaes256",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wnsgur9137/CryptoAES256",
+      "state" : {
+        "branch" : "master",
+        "revision" : "119a21e17e2ddc367443bd84bbfa65ce9f5c648a"
+      }
+    },
+    {
       "identity" : "cryptoswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/krzyzanowskim/CryptoSwift",

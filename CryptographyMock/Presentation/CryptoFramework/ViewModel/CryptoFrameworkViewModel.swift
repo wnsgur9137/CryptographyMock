@@ -7,15 +7,15 @@
 
 import Foundation
 import Combine
-import CryptoAES
+import CryptoAES256
 
 final class CryptoFrameworkViewModel {
     @Published var encryptedText: String?
     @Published var decryptedText: String?
-    private let cryptoAES: CryptoAES
+    private let cryptoAES: CryptoAES256
     
     init(key: String?, iv: String?) {
-        self.cryptoAES = CryptoAES(key: key, iv: iv)
+        self.cryptoAES = CryptoAES256(key: key, iv: iv)
     }
     
     func encryption(_ text: String, password: String) {
