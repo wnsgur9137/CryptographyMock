@@ -1,23 +1,22 @@
 //
-//  CryptographyViewController.swift
+//  CryptoFrameworkViewController.swift
 //  CryptographyMock
 //
-//  Created by JunHyeok Lee on 2023/04/21.
+//  Created by JunHyeok Lee on 2023/04/24.
 //
 
 import UIKit
 import Combine
 
-final class CryptographyViewController: UIViewController {
-    
+final class CryptoFrameworkViewController: UIViewController {
     // default key 32
     private let defaultKey: String = "qwerasdfzxcv1234qwerasdfzxcv1234"
     // https://placeimg.com/62/32/any
     private let viewModel: CryptographyViewModel
     private var cancellables: Set<AnyCancellable> = []
     
-    private let cryptographyView: CryptographyView = {
-        let view = CryptographyView()
+    private let cryptoFrameworkView: CryptoFrameworkView = {
+        let view = CryptoFrameworkView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -33,7 +32,7 @@ final class CryptographyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Cryptography"
+        self.title = "CryptoFramework"
         
         configurePasswordTextField()
         
@@ -47,33 +46,33 @@ final class CryptographyViewController: UIViewController {
     }
     
     private func configurePasswordTextField() {
-        cryptographyView.setPasswordText(text: self.defaultKey)
+        cryptoFrameworkView.setPasswordText(text: self.defaultKey)
     }
 }
 
 // MARK: - Action
-extension CryptographyViewController {
+extension CryptoFrameworkViewController {
     private func addActionEncryptedButton() {
-        cryptographyView.addActionEncryptButton(UIAction(handler: { [weak self] _ in
+        cryptoFrameworkView.addActionEncryptButton(UIAction(handler: { [weak self] _ in
             guard let defaultKey = self?.defaultKey,
-                  let encryptText = self?.cryptographyView.getEncryptText() else { return }
+                  let encryptText = self?.cryptoFrameworkView.getEncryptText() else { return }
             self?.viewModel.encryption(encryptText, password: defaultKey)
             guard let imageURL = URL(string: encryptText) else { return }
-            self?.cryptographyView.setEncryptImage(url: imageURL)
+            self?.cryptoFrameworkView.setEncryptImage(url: imageURL)
         }), event: .touchUpInside)
     }
     
     private func addActionDecryptedButton() {
-        cryptographyView.addActionDecryptButton(UIAction(handler: { [weak self] _ in
+        cryptoFrameworkView.addActionDecryptButton(UIAction(handler: { [weak self] _ in
             guard let defaultKey = self?.defaultKey,
-                  let decryptText = self?.cryptographyView.getDecryptText() else { return }
+                  let decryptText = self?.cryptoFrameworkView.getDecryptText() else { return }
             self?.viewModel.decryption(decryptText, password: defaultKey)
         }), event: .touchUpInside)
     }
 }
 
 // MARK: - Binding
-extension CryptographyViewController {
+extension CryptoFrameworkViewController {
     private func bindAll() {
         bindEncryptedText()
         bindDecryptedText()
@@ -84,7 +83,7 @@ extension CryptographyViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] encryptedText in
                 guard let encryptedText = encryptedText else { return }
-                self?.cryptographyView.setEncryptedText(text: encryptedText)
+                self?.cryptoFrameworkView.setEncryptedText(text: encryptedText)
             })
             .store(in: &cancellables)
     }
@@ -94,26 +93,26 @@ extension CryptographyViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] decryptedText in
                 guard let decryptedText = decryptedText else { return }
-                self?.cryptographyView.setDecryptedText(text: decryptedText)
+                self?.cryptoFrameworkView.setDecryptedText(text: decryptedText)
                 guard let imageURL = URL(string: decryptedText) else { return }
-                self?.cryptographyView.setDecryptedImage(url: imageURL)
+                self?.cryptoFrameworkView.setDecryptedImage(url: imageURL)
             })
             .store(in: &cancellables)
     }
 }
 
 // MARK: - Layout
-extension CryptographyViewController {
+extension CryptoFrameworkViewController {
     private func addSubviews() {
-        self.view.addSubview(cryptographyView)
+        self.view.addSubview(cryptoFrameworkView)
     }
     
     private func setLayoutConstraints() {
         NSLayoutConstraint.activate([
-            cryptographyView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            cryptographyView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            cryptographyView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            cryptographyView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            cryptoFrameworkView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            cryptoFrameworkView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            cryptoFrameworkView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            cryptoFrameworkView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }

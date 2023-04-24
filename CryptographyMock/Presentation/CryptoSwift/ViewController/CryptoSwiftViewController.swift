@@ -31,6 +31,7 @@ final class CryptoSwiftViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "CryptoSwift"
         
         configurePasswordTextField()
         

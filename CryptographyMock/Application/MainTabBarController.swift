@@ -15,15 +15,19 @@ final class MainTabBarController: UITabBarController {
     }
     
     private func configureTab() {
-        let cryptoTab = UINavigationController(rootViewController: CryptographyViewController())
-        cryptoTab.tabBarItem = UITabBarItem(title: "Crypto", image: nil, selectedImage: nil)
-        
         let cryptoSwiftTab = UINavigationController(rootViewController: CryptoSwiftViewController())
         cryptoSwiftTab.tabBarItem = UITabBarItem(title: "CryptoSwift", image: nil, selectedImage: nil)
         
+        let cryptoTab = UINavigationController(rootViewController: CryptographyViewController())
+        cryptoTab.tabBarItem = UITabBarItem(title: "Crypto", image: nil, selectedImage: nil)
+        
+        let cryptoFrameworkTab = UINavigationController(rootViewController: CryptoFrameworkViewController())
+        cryptoFrameworkTab.tabBarItem = UITabBarItem(title: "CryptoFramework", image: nil, selectedImage: nil)
+        
         viewControllers = [
-            cryptoTab,
             cryptoSwiftTab,
+            cryptoTab,
+            cryptoFrameworkTab,
         ]
     }
 }
