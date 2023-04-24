@@ -56,9 +56,9 @@ extension CryptographyViewController {
         cryptographyView.addActionEncryptButton(UIAction(handler: { [weak self] _ in
             guard let defaultKey = self?.defaultKey,
                   let encryptText = self?.cryptographyView.getEncryptText() else { return }
-            let imageURL = URL(string: encryptText)
-            self?.cryptographyView.setEncryptImage(url: imageURL!)
             self?.viewModel.encryption(encryptText, password: defaultKey)
+            guard let imageURL = URL(string: encryptText) else { return }
+            self?.cryptographyView.setEncryptImage(url: imageURL)
         }), event: .touchUpInside)
     }
     
@@ -94,8 +94,8 @@ extension CryptographyViewController {
             .sink(receiveValue: { [weak self] decryptedText in
                 guard let decryptedText = decryptedText else { return }
                 self?.cryptographyView.setDecryptedText(text: decryptedText)
-                let imageURL = URL(string: decryptedText)
-                self?.cryptographyView.setDecryptedImage(url: imageURL!)
+                guard let imageURL = URL(string: decryptedText) else { return }
+                self?.cryptographyView.setDecryptedImage(url: imageURL)
             })
             .store(in: &cancellables)
     }

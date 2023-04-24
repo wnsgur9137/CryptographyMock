@@ -2,12 +2,50 @@
 //  CryptoSwiftView.swift
 //  CryptographyMock
 //
-//  Created by JunHyeok Lee on 2023/04/24.
+//  Created by JunHyeok Lee on 2023/04/21.
 //
 
 import UIKit
 
-final class CryptoSwiftView: UIView {
+final class CryptoSwiftView: UIScrollView {
+    
+    private let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let passwordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Password"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = Constants.Color.label
+        label.font = .systemFont(ofSize: 20.0, weight: .bold)
+        return label
+    }()
+    
+    private let passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.backgroundColor = Constants.Color.systemGray6
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = Constants.Color.systemGray.cgColor
+        textField.font = .systemFont(ofSize: 20.0, weight: .regular)
+        textField.isUserInteractionEnabled = false
+        textField.placeholder = "Password"
+        return textField
+    }()
+    
+    private let passwordStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 8.0
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
     private let encryptTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -15,7 +53,14 @@ final class CryptoSwiftView: UIView {
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = Constants.Color.systemGray.cgColor
         textField.font = .systemFont(ofSize: 20.0, weight: .regular)
+        textField.placeholder = "encryptText"
         return textField
+    }()
+    
+    private let encryptImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     private let encryptButton: UIButton = {
@@ -37,6 +82,7 @@ final class CryptoSwiftView: UIView {
     
     private let encryptStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 8.0
         stackView.alignment = .center
@@ -51,6 +97,7 @@ final class CryptoSwiftView: UIView {
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = Constants.Color.systemGray.cgColor
         textField.font = .systemFont(ofSize: 20.0, weight: .regular)
+        textField.placeholder = "DecryptText"
         return textField
     }()
     
@@ -71,8 +118,15 @@ final class CryptoSwiftView: UIView {
         return textField
     }()
     
+    private let decryptedImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private let decryptStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 8.0
         stackView.alignment = .center
@@ -107,6 +161,26 @@ extension CryptoSwiftView {
         return decryptTextField.text ?? ""
     }
     
+    func setEncryptImage(url: URL) {
+        DispatchQueue.global().async {
+            guard let data = try? Data(contentsOf: url) else { return }
+            DispatchQueue.main.async {
+                self.encryptImageView.image = UIImage(data: data)
+            }
+        }
+    }
+    func setDecryptedImage(url: URL) {
+        DispatchQueue.global().async {
+            guard let data = try? Data(contentsOf: url) else { return }
+            DispatchQueue.main.async {
+                self.decryptedImageView.image = UIImage(data: data)
+            }
+        }
+    }
+    
+    func setPasswordText(text: String) {
+        passwordTextField.text = text
+    }
     func setEncryptedText(text: String) {
         encryptedTextField.text = text
     }
@@ -118,39 +192,70 @@ extension CryptoSwiftView {
 // MARK: - Layout
 extension CryptoSwiftView {
     private func addSubviews() {
-        self.addSubview(encryptStackView)
-        self.addSubview(decryptStackView)
+        self.addSubview(contentView)
+        contentView.addSubview(passwordStackView)
+        contentView.addSubview(encryptStackView)
+        contentView.addSubview(decryptStackView)
+        
+        passwordStackView.addArrangedSubview(passwordLabel)
+        passwordStackView.addArrangedSubview(passwordTextField)
         
         encryptStackView.addArrangedSubview(encryptTextField)
         encryptStackView.addArrangedSubview(encryptButton)
         encryptStackView.addArrangedSubview(encryptedTextField)
+        encryptStackView.addArrangedSubview(encryptImageView)
         
         decryptStackView.addArrangedSubview(decryptTextField)
         decryptStackView.addArrangedSubview(decryptButton)
         decryptStackView.addArrangedSubview(decryptedTextField)
+        decryptStackView.addArrangedSubview(decryptedImageView)
     }
     
     private func setLayoutConstraints() {
         NSLayoutConstraint.activate([
-            encryptTextField.heightAnchor.constraint(equalToConstant: 30.0),
-            encryptButton.heightAnchor.constraint(equalToConstant: 30.0),
-            encryptedTextField.heightAnchor.constraint(equalToConstant: 30.0),
-            
-            encryptStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 50.0),
-            encryptStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            encryptStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            encryptStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            contentView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: self.widthAnchor),
         ])
         
         NSLayoutConstraint.activate([
+            passwordLabel.widthAnchor.constraint(equalToConstant: 400.0),
+            passwordLabel.heightAnchor.constraint(equalToConstant: 30.0),
+            
+            passwordTextField.widthAnchor.constraint(equalToConstant: 400.0),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 30.0),
+            
+            passwordStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 50.0),
+            passwordStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            encryptTextField.widthAnchor.constraint(equalToConstant: 400.0),
+            encryptTextField.heightAnchor.constraint(equalToConstant: 30.0),
+            encryptButton.heightAnchor.constraint(equalToConstant: 30.0),
+            encryptedTextField.widthAnchor.constraint(equalToConstant: 400.0),
+            encryptedTextField.heightAnchor.constraint(equalToConstant: 30.0),
+            
+            encryptStackView.topAnchor.constraint(equalTo: passwordStackView.bottomAnchor, constant: 80.0),
+            encryptStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            encryptStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            encryptStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            decryptTextField.widthAnchor.constraint(equalToConstant: 400.0),
             decryptTextField.heightAnchor.constraint(equalToConstant: 30.0),
             decryptButton.heightAnchor.constraint(equalToConstant: 30.0),
+            decryptedTextField.widthAnchor.constraint(equalToConstant: 400.0),
             decryptedTextField.heightAnchor.constraint(equalToConstant: 30.0),
             
             decryptStackView.topAnchor.constraint(equalTo: encryptStackView.bottomAnchor, constant: 30.0),
-            decryptStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            decryptStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            decryptStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            decryptStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            decryptStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            decryptStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            decryptStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
         ])
     }
 }
