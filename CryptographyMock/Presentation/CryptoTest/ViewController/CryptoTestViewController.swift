@@ -11,7 +11,7 @@ import Combine
 final class CryptoTestViewController: UIViewController {
     // default key 32
 //    private let defaultKey: String = "qwerasdfzxcv1234qwerasdfzxcv1234"
-    private let defaultKey: String = "qwer"
+    private let defaultKey: String = "asdf1111111111111111111111111111"
     private let viewModel: CryptoTestViewModel
     private var cancellables: Set<AnyCancellable> = []
     
@@ -76,6 +76,7 @@ extension CryptoTestViewController {
     private func bindAll() {
         bindEncryptedText()
         bindDecryptedText()
+        bindDecryptedImageData()
     }
     
     private func bindEncryptedText() {
@@ -94,8 +95,23 @@ extension CryptoTestViewController {
             .sink(receiveValue: { [weak self] decryptedText in
                 guard let decryptedText = decryptedText else { return }
                 self?.cryptoSwiftView.setDecryptedText(text: decryptedText)
-                guard let imageURL = URL(string: decryptedText) else { return }
-                self?.cryptoSwiftView.setDecryptedImage(url: imageURL)
+                
+                if let imageData = Data(base64Encoded: decryptedText, options: .ignoreUnknownCharacters) {
+                    let decodedImage = UIImage(data: imageData)
+                }
+            })
+            .store(in: &cancellables)
+    }
+    
+    private func bindDecryptedImageData() {
+        self.viewModel.$decryptedImageData
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] decryptedImageData in
+                print("🔔1")
+                guard let imageData = decryptedImageData else { return }
+                print("🔔2")
+                print("🚨imageData: \(imageData)")
+                self?.cryptoSwiftView.decryptedImageView.image = UIImage(data: imageData)
             })
             .store(in: &cancellables)
     }

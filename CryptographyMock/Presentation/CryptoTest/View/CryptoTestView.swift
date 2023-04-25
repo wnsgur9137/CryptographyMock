@@ -112,7 +112,7 @@ final class CryptoTestView: UIView {
         return textField
     }()
     
-    private let decryptedImageView: UIImageView = {
+    let decryptedImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

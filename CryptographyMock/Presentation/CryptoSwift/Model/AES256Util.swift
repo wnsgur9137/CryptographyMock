@@ -13,7 +13,7 @@ import CryptoSwift
 class AES256Util {
     //키값 32바이트: AES256(24bytes: AES192, 16bytes: AES128)
 //    private static let SECRET_KEY = "01234567890123450123456789012345"
-    private static let IV = "0123456789012345"
+    private static let IV = "123456789abcdefg"
  
     static func encrypt(string: String, password: String) -> String {
         guard !string.isEmpty else { return "" }
@@ -22,21 +22,33 @@ class AES256Util {
  
     static func decrypt(encoded: String, password: String) -> String {
         let datas = Data(base64Encoded: encoded)
- 
+        print("🔔1")
         guard datas != nil else {
+            print("guard datas != nil else")
             return ""
         }
- 
+        print("🔔2")
         let bytes = datas!.bytes
         let decode = try! getAESObject(password: password).decrypt(bytes)
- 
+        print("🔔decode: \(decode)")
         return String(bytes: decode, encoding: .utf8) ?? ""
+    }
+    
+    static func decryptImageData(encoded: String, password: String) -> Data? {
+        let datas = Data(base64Encoded: encoded)
+        guard datas != nil else { return nil }
+        let bytes = datas!.bytes
+        let decode = try! getAESObject(password: password).decrypt(bytes)
+        return Data(decode)
     }
  
     private static func getAESObject(password: String) -> AES{
         let keyDecodes : Array<UInt8> = Array(password.utf8)
         let ivDecodes : Array<UInt8> = Array(IV.utf8)
+        print("🔔keyDecodes: \(keyDecodes)")
+        print("🔔ivDecodes: \(ivDecodes)")
         let aesObject = try! AES(key: keyDecodes, blockMode: CBC(iv: ivDecodes), padding: .pkcs5)
+        print("🔔aesObject: \(aesObject)")
  
         return aesObject
     }

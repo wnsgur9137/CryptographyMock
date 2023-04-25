@@ -30,6 +30,7 @@
 		A8D6BD2E29F7691500CDEAF0 /* CryptoTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BD2D29F7691500CDEAF0 /* CryptoTestView.swift */; };
 		A8D6BD3029F7691A00CDEAF0 /* CryptoTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BD2F29F7691A00CDEAF0 /* CryptoTestViewModel.swift */; };
 		A8D6BD3629F7699E00CDEAF0 /* AES256Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BD3529F7699E00CDEAF0 /* AES256Test.swift */; };
+		A8D6BD3829F7987C00CDEAF0 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BD3729F7987C00CDEAF0 /* UIImage+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +70,7 @@
 		A8D6BD2D29F7691500CDEAF0 /* CryptoTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTestView.swift; sourceTree = "<group>"; };
 		A8D6BD2F29F7691A00CDEAF0 /* CryptoTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTestViewModel.swift; sourceTree = "<group>"; };
 		A8D6BD3529F7699E00CDEAF0 /* AES256Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES256Test.swift; sourceTree = "<group>"; };
+		A8D6BD3729F7987C00CDEAF0 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				A8D6BCE329F6102F00CDEAF0 /* Constants.swift */,
+				A8D6BD3729F7987C00CDEAF0 /* UIImage+.swift */,
 				A8CD474F29F2731B005E80ED /* Application */,
 				A8CD475129F27347005E80ED /* Presentation */,
 				A8CD475029F27321005E80ED /* Resources */,
@@ -401,6 +404,7 @@
 				A8D6BD3029F7691A00CDEAF0 /* CryptoTestViewModel.swift in Sources */,
 				A8D6BD2C29F7690500CDEAF0 /* CryptoTestViewController.swift in Sources */,
 				A8D6BCE429F6102F00CDEAF0 /* Constants.swift in Sources */,
+				A8D6BD3829F7987C00CDEAF0 /* UIImage+.swift in Sources */,
 				A8D6BCE829F611A300CDEAF0 /* CryptoSwiftViewModel.swift in Sources */,
 				A8D6BCF729F64AF600CDEAF0 /* CryptoFrameworkViewController.swift in Sources */,
 			);
