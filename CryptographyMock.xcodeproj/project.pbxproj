@@ -26,6 +26,10 @@
 		A8D6BCF929F64B2900CDEAF0 /* CryptoFrameworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BCF829F64B2900CDEAF0 /* CryptoFrameworkViewModel.swift */; };
 		A8D6BCFB29F64B2E00CDEAF0 /* CryptoFrameworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BCFA29F64B2E00CDEAF0 /* CryptoFrameworkView.swift */; };
 		A8D6BD2A29F65D7A00CDEAF0 /* CryptoAES256 in Frameworks */ = {isa = PBXBuildFile; productRef = A8D6BD2929F65D7A00CDEAF0 /* CryptoAES256 */; };
+		A8D6BD2C29F7690500CDEAF0 /* CryptoTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BD2B29F7690500CDEAF0 /* CryptoTestViewController.swift */; };
+		A8D6BD2E29F7691500CDEAF0 /* CryptoTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BD2D29F7691500CDEAF0 /* CryptoTestView.swift */; };
+		A8D6BD3029F7691A00CDEAF0 /* CryptoTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BD2F29F7691A00CDEAF0 /* CryptoTestViewModel.swift */; };
+		A8D6BD3629F7699E00CDEAF0 /* AES256Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6BD3529F7699E00CDEAF0 /* AES256Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +65,10 @@
 		A8D6BCF629F64AF600CDEAF0 /* CryptoFrameworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFrameworkViewController.swift; sourceTree = "<group>"; };
 		A8D6BCF829F64B2900CDEAF0 /* CryptoFrameworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFrameworkViewModel.swift; sourceTree = "<group>"; };
 		A8D6BCFA29F64B2E00CDEAF0 /* CryptoFrameworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFrameworkView.swift; sourceTree = "<group>"; };
+		A8D6BD2B29F7690500CDEAF0 /* CryptoTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTestViewController.swift; sourceTree = "<group>"; };
+		A8D6BD2D29F7691500CDEAF0 /* CryptoTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTestView.swift; sourceTree = "<group>"; };
+		A8D6BD2F29F7691A00CDEAF0 /* CryptoTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTestViewModel.swift; sourceTree = "<group>"; };
+		A8D6BD3529F7699E00CDEAF0 /* AES256Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES256Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +173,7 @@
 				A8D6BCEB29F611F000CDEAF0 /* CryptoSwift */,
 				A81881F929F2889000211C0F /* Cryptography */,
 				A8D6BCFC29F64B3100CDEAF0 /* CryptoFramework */,
+				A8D6BD3129F7692100CDEAF0 /* CryptoTest */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -261,6 +270,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A8D6BD3129F7692100CDEAF0 /* CryptoTest */ = {
+			isa = PBXGroup;
+			children = (
+				A8D6BD3229F7692800CDEAF0 /* ViewController */,
+				A8D6BD3329F7692E00CDEAF0 /* ViewModel */,
+				A8D6BD3429F7693300CDEAF0 /* View */,
+				A8D6BD3529F7699E00CDEAF0 /* AES256Test.swift */,
+			);
+			path = CryptoTest;
+			sourceTree = "<group>";
+		};
+		A8D6BD3229F7692800CDEAF0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A8D6BD2B29F7690500CDEAF0 /* CryptoTestViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A8D6BD3329F7692E00CDEAF0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A8D6BD2F29F7691A00CDEAF0 /* CryptoTestViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A8D6BD3429F7693300CDEAF0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A8D6BD2D29F7691500CDEAF0 /* CryptoTestView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -340,8 +384,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8D6BD2E29F7691500CDEAF0 /* CryptoTestView.swift in Sources */,
 				A81881F629F2885200211C0F /* CryptographyView.swift in Sources */,
 				A81881FB29F2889900211C0F /* CryptographyViewModel.swift in Sources */,
+				A8D6BD3629F7699E00CDEAF0 /* AES256Test.swift in Sources */,
 				A8D6BCFB29F64B2E00CDEAF0 /* CryptoFrameworkView.swift in Sources */,
 				A8CD474029F272EF005E80ED /* CryptographyViewController.swift in Sources */,
 				A8D6BCF429F6365F00CDEAF0 /* AES256Util.swift in Sources */,
@@ -352,6 +398,8 @@
 				A8D6BCF929F64B2900CDEAF0 /* CryptoFrameworkViewModel.swift in Sources */,
 				A8CD473E29F272EF005E80ED /* SceneDelegate.swift in Sources */,
 				A8D6BCEA29F611AC00CDEAF0 /* CryptoSwiftView.swift in Sources */,
+				A8D6BD3029F7691A00CDEAF0 /* CryptoTestViewModel.swift in Sources */,
+				A8D6BD2C29F7690500CDEAF0 /* CryptoTestViewController.swift in Sources */,
 				A8D6BCE429F6102F00CDEAF0 /* Constants.swift in Sources */,
 				A8D6BCE829F611A300CDEAF0 /* CryptoSwiftViewModel.swift in Sources */,
 				A8D6BCF729F64AF600CDEAF0 /* CryptoFrameworkViewController.swift in Sources */,

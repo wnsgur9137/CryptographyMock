@@ -24,10 +24,14 @@ final class MainTabBarController: UITabBarController {
         let cryptoFrameworkTab = UINavigationController(rootViewController: CryptoFrameworkViewController())
         cryptoFrameworkTab.tabBarItem = UITabBarItem(title: "CryptoFramework", image: nil, selectedImage: nil)
         
+        let cryptoTestTab = UINavigationController(rootViewController: CryptoTestViewController())
+        cryptoTestTab.tabBarItem = UITabBarItem(title: "CryptoTest", image: nil, selectedImage: nil)
+        
         viewControllers = [
             cryptoSwiftTab,
             cryptoTab,
             cryptoFrameworkTab,
+            cryptoTestTab,
         ]
     }
 }

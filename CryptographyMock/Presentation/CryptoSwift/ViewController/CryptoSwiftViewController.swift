@@ -11,6 +11,7 @@ import Combine
 final class CryptoSwiftViewController: UIViewController {
     // default key 32
     private let defaultKey: String = "qwerasdfzxcv1234qwerasdfzxcv1234"
+//    private let defaultKey: String = "qwer"
     private let viewModel: CryptoSwiftViewModel
     private var cancellables: Set<AnyCancellable> = []
     

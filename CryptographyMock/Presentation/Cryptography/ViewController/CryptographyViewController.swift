@@ -12,6 +12,7 @@ final class CryptographyViewController: UIViewController {
     
     // default key 32
     private let defaultKey: String = "qwerasdfzxcv1234qwerasdfzxcv1234"
+//    private let defaultKey: String = "qwer"
     // https://placeimg.com/62/32/any
     private let viewModel: CryptographyViewModel
     private var cancellables: Set<AnyCancellable> = []
