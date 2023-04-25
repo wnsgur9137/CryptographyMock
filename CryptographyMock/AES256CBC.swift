@@ -192,7 +192,7 @@ final public class AES256CBC {
     /// the password must be exactly 32 chars long for AES-256
     public class func encryptString(_ str: String, password: String) -> String? {
         if !str.isEmpty { // get AES initialization vector from first 16 chars
-            let iv = "0123456789101112"
+            let iv = "123456789abcdefg"
             let key = password
             
             guard let encryptedString = try? aesEncrypt(str, key: key, iv: iv) else {
@@ -209,15 +209,30 @@ final public class AES256CBC {
     public class func decryptString(_ str: String, password: String) -> String? {
         if !str.isEmpty {
             // get AES initialization vector from first 16 chars
-            let iv = "0123456789101112"
+            let iv = "123456789abcdefg"
             let encryptedString = str.replacingOccurrences(of: iv, with: "",
                                                            options: String.CompareOptions.literal, range: nil) // remove IV
             
             guard let decryptedString = try? aesDecrypt(encryptedString, key: password, iv: iv) else {
+                print("decryptString")
                 print("an error occured while decrypting")
                 return nil
             }
             return decryptedString
+        }
+        return nil
+    }
+    
+    public class func decryptData(_ str: String, password: String) -> Data? {
+        if !str.isEmpty {
+            let iv = "123456789abcdefg"
+            let encryptedString = str.replacingOccurrences(of: iv, with: "", options: String.CompareOptions.literal, range: nil)
+            guard let decryptedData = try? aesDecryptData(encryptedString, key: password, iv: iv) else {
+                print("decryptData")
+                print("an error occured while decrypting")
+                return nil
+            }
+            return decryptedData
         }
         return nil
     }
@@ -303,6 +318,15 @@ final public class AES256CBC {
             throw NSError(domain: "Invalid utf8 data", code: 0, userInfo: nil)
         }
         return decryptStr
+    }
+    
+    fileprivate class func aesDecryptData(_ str: String, key: String, iv: String) throws -> Data? {
+        guard let keyData = key.data(using: String.Encoding.utf8),
+              let ivData = iv.data(using: String.Encoding.utf8),
+              let data = Data(base64Encoded: str) else { return nil }
+        
+        let dec = try Data(AESCipher(key: keyData.bytes, iv: ivData.bytes).decrypt(bytes: data.bytes))
+        return dec
     }
     
 }

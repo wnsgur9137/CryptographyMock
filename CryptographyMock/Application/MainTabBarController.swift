@@ -27,11 +27,15 @@ final class MainTabBarController: UITabBarController {
         let cryptoTestTab = UINavigationController(rootViewController: CryptoTestViewController())
         cryptoTestTab.tabBarItem = UITabBarItem(title: "CryptoTest", image: nil, selectedImage: nil)
         
+        let cryptographyTestTab = UINavigationController(rootViewController: CryptographyTestViewController())
+        cryptographyTestTab.tabBarItem = UITabBarItem(title: "Custom", image: nil, selectedImage: nil)
+        
         viewControllers = [
             cryptoSwiftTab,
             cryptoTab,
             cryptoFrameworkTab,
             cryptoTestTab,
+            cryptographyTestTab,
         ]
     }
 }
